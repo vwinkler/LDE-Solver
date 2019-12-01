@@ -1,0 +1,2 @@
+class SystemUnsatisfiableException(Exception):
+    pass

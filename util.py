@@ -15,3 +15,17 @@ def mergeDictionaries(a, b, resolveConflict):
         else:
             result[e] = b[e]
     return result
+
+def printEquations(equations):
+    for equation in equations:
+        print(equation)
+        
+def makeVariableName(number):
+    assert type(number) is int
+    return "x{}".format(number)
+
+def makeSolutionString(solutionForVariables, numVariables, makeVariableName): #todo: get rid of numVariables
+    output = []
+    for i in range(1, numVariables + 1):
+        output.append(str(solutionForVariables[makeVariableName(i)]))
+    return " ".join(output)
