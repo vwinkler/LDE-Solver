@@ -18,12 +18,18 @@ class LinearDiophanticEquation:
     def getConstant(self):
         return self.constant
     def isSatisfiable(self):
-        divisor = reduce(gcd, self.coefficients.values())
-        return (self.constant % divisor == 0)
+        if len(self.coefficients) == 0:
+            return self.constant == 0
+        else:
+            divisor = reduce(gcd, self.coefficients.values())
+            return (self.constant % divisor == 0)
     def normalize(self):
         assert self.isSatisfiable()
-        divisor = reduce(gcd, self.coefficients.values())
-        self.divideByFactor(divisor)
+        if len(self.coefficients) > 0:
+            divisor = reduce(gcd, self.coefficients.values())
+            self.divideByFactor(divisor)
+        else:
+            self.divideByFactor(self.constant)
     def multiplyWithFactor(self, factor):
         assert type(factor) is int
         if factor == 0:

@@ -1,4 +1,5 @@
 from SystemUnsatisfiableException import SystemUnsatisfiableException
+import util
 
 def lowestCoefficientOfEquation(equation):
     return equation.getCoefficient(equation.findVariableWithLowestCoefficientAbsolute())
@@ -46,7 +47,11 @@ class LinearDiophanticEquationSystem:
             self.eliminateEquationWithCoefficientlessVariable(equation, variable)
         else:
             self.doEquationTransformationOnVariable(equation, variable)
-        self.normalizeEquations() 
+            
+        if not self.isIndividuallySatisfiable():
+            raise SystemUnsatisfiableException()
+        else:
+            self.normalizeEquations() 
     
     def eliminateEquationWithCoefficientlessVariable(self, equation, variable):
         solutionForVariable = equation.solveForVariableWithCoefficientOne(variable)
