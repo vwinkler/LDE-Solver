@@ -17,7 +17,7 @@ class DiophanticSum:
         for name in self.coefficients:
             coeff = self.coefficients[name]
             valueOfVariable = assignment[name]
-            result = result = coeff*valueOfVariable
+            result = result + coeff*valueOfVariable
         return result
     
     def __eq__(self, other):
