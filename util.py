@@ -20,6 +20,10 @@ def printEquations(equations):
     for equation in equations:
         print(equation)
         
+def printSolutions(solutions):
+    for (name, solution) in solutions:
+        print("{} = {}".format(name, solution))
+        
 def makeVariableName(number):
     assert type(number) is int
     return "x{}".format(number)
