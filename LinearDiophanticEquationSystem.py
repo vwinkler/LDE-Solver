@@ -1,8 +1,8 @@
 from SystemUnsatisfiableException import SystemUnsatisfiableException
 import util
 
-def lowestCoefficientOfEquation(equation):
-    return equation.getCoefficient(equation.findVariableWithLowestCoefficientAbsolute())
+def lowestCoefficientAbsoluteOfEquation(equation):
+    return abs(equation.getCoefficient(equation.findVariableWithLowestCoefficientAbsolute()))
 
 class LinearDiophanticEquationSystem:
     def __init__(self, equations, numVariables, makeVariableName):
@@ -76,8 +76,8 @@ class LinearDiophanticEquationSystem:
             equation.insertDiophanticSumForVariable(diophanticSum, variable)
         
     def chooseEquationToTransform(self):
-        equationWithMinCoeff = min(self.equations, key=lowestCoefficientOfEquation)
-        if abs(lowestCoefficientOfEquation(equationWithMinCoeff)) == 1:
+        equationWithMinCoeff = min(self.equations, key=lowestCoefficientAbsoluteOfEquation)
+        if lowestCoefficientAbsoluteOfEquation(equationWithMinCoeff) == 1:
             chosenEquation = equationWithMinCoeff
         else:
             chosenEquation = self.equations[0]
