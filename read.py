@@ -8,7 +8,7 @@ def read(makeVariableName):
     for i in range(1, numEquations + 1):
         line = lines[i]
         splitLine = line.split()
-        numTerms = int(line[0]) - 1
+        numTerms = int(splitLine[0]) - 1
         
         equation = LinearDiophanticEquation()
         for i in range(1, numTerms*2 + 1, 2):
