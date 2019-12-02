@@ -3,17 +3,19 @@ from LinearDiophanticEquation import LinearDiophanticEquation
 
 def read(makeVariableName):
     equations = []
-    maxVariableIndex = -1
-    for line in sys.stdin.readlines()[1:]:
-        coefficientsAndVariables = list(map(int, line.split()[1:-1]))
+    lines = sys.stdin.readlines()
+    [numEquations, maxVariableIndex] = map(int, lines[0].split())
+    for i in range(1, numEquations + 1):
+        line = lines[i]
+        splitLine = line.split()
+        numTerms = int(line[0]) - 1
         
         equation = LinearDiophanticEquation()
-        for i in range(0, len(coefficientsAndVariables[:-1]), 2):
-            coefficient = coefficientsAndVariables[i]
-            name = coefficientsAndVariables[i + 1]
-            maxVariableIndex = max(name, maxVariableIndex)
+        for i in range(1, numTerms*2 + 1, 2):
+            coefficient = int(splitLine[i])
+            name = int(splitLine[i + 1])
             equation.addVariable(makeVariableName(name), coefficient)
-        equation.setConstant(coefficientsAndVariables[-1])
+        equation.setConstant(int(splitLine[numTerms*2 + 1]))
         
         equations.append(equation)
     return equations, maxVariableIndex
